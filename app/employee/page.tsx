@@ -1,7 +1,10 @@
 "use client"
+import { ViewEmployee } from '@/components/employeePopover';
+import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import axios from 'axios';
+import Link from 'next/link';
 import React, { useState, useEffect } from 'react'
 
 export default function Employee() {
@@ -56,12 +59,18 @@ export default function Employee() {
           <ScrollArea className='h-[500px]'>
           {
             data.map((item, index) => (
-              <TableRow key={index} className='cursor-pointer'>
-                <TableCell>{index +1}</TableCell>
+              
+              <TableRow  key={item.id} className=''>
+                <TableCell>{item.id}</TableCell>
                 <TableCell>{item.username}</TableCell>
                 <TableCell>{item.email}</TableCell>
                 <TableCell>{item.phone_number}</TableCell>
+                <TableCell className='text-sm'>BR</TableCell>
+                <TableCell><ViewEmployee /> </TableCell>
+
+                
               </TableRow>
+              
             ))
           };
           </ScrollArea>

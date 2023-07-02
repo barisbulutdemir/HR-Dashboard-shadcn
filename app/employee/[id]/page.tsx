@@ -1,6 +1,8 @@
 import Location from '@/components/single-employee/location'
+import TransferLog from '@/components/single-employee/transferLog'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 import { Label } from '@/components/ui/label'
+import { ScrollArea } from '@/components/ui/scroll-area'
 import React from 'react'
 
 export default function SingleEmployee() {
@@ -22,8 +24,19 @@ export default function SingleEmployee() {
             {/*  ---------- avatar and name end --------- */}
 
             {/*  ----------  --------- */}
+            <ScrollArea className='h-[400px]'>
+
+            <div className='mt-10 mx-5'>
+                <Location />
+                <TransferLog />
+
+            </div>
+
+            </ScrollArea>
+           
+           
             
-            <Location />
+           
           
 
            

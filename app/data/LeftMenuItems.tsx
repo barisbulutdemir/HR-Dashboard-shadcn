@@ -8,8 +8,8 @@ export const sidebarNavItems = [
       href: "/employee",
     },
     {
-      title: "Tasks",
-      href: "/tasks",
+      title: "Projects",
+      href: "/projects",
     },
     {
       title: "Settings",

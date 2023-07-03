@@ -5,6 +5,10 @@ import { ThemeProvider } from "@/components/theme-provider"
 import RightMenu from '@/components/menu/rightMenu'
 import Header from '@/components/menu/header'
 
+type RootLayoutProps = {
+  children: React.ReactNode;
+};
+
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
       <>

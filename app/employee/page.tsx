@@ -1,20 +1,29 @@
 "use client"
+
 import { ViewEmployee } from '@/components/employeePopover';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table'
 import axios from 'axios';
 import Link from 'next/link';
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
+import { useEffect } from 'react'
+
+type Person = {
+  id: number;
+  username: string;
+  email: string;
+  phone_number: string;
+};
 
 export default function Employee() {
 
-  const [data, setData] = useState([]); // Data state
+  const [data, setData] = useState<Person[]>([]); // Data state
 
   async function fetchPersons() {
     try {
       // İstek yapılıyor ve dönen değer response'a atanıyor
-      const response = await axios.get('http://127.0.0.1:8000/persons/');
+      const response = await axios.get('https://barisbdem.pythonanywhere.com/persons/');
       // JSON verisini döndür
       return response.data;
     } catch (err) {
@@ -58,7 +67,7 @@ export default function Employee() {
         <TableBody>
           <ScrollArea className='h-[500px]'>
           {
-            data.map((item, index) => (
+            data?.map((item) => (
               
               <TableRow  key={item.id} className=''>
                 <TableCell>{item.id}</TableCell>
@@ -67,12 +76,10 @@ export default function Employee() {
                 <TableCell>{item.phone_number}</TableCell>
                 <TableCell className='text-sm'>BR</TableCell>
                 <TableCell><ViewEmployee /> </TableCell>
-
-                
               </TableRow>
               
             ))
-          };
+          }
           </ScrollArea>
         </TableBody>
        

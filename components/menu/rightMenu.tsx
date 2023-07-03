@@ -16,7 +16,7 @@ export default function RightMenu() {
     setLoading(true); // Veri yüklenmeye başladığında 'loading' durumunu 'true' olarak ayarla
     try {
       setNotes([]); // Notları temizle
-      const response = await axios.get(`http://127.0.0.1:8000/notes/date/${year}/${month}/${day}/`);
+      const response = await axios.get(`https://barisbdem.pythonanywhere.com/notes/date/${year}/${month}/${day}/`);
       await new Promise(resolve => setTimeout(resolve, 500));
       setNotes(response.data);
     } catch (error) {

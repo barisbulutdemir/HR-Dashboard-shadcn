@@ -18,8 +18,8 @@ export default function RightMenu() {
   const fetchNotes = async (year: number, month: number, day: number) => {
     setLoading(true);
     try {
-      setNotes([]);
-      const response = await axios.get(`http://127.0.0.1:8000/calendar/notes/getNotesByDate/${year}/${month}/${day}/`);
+      setNotes([]); // Notları temizle
+      const response = await axios.get(`http://127.0.0.1:8000/notes/date/${year}/${month}/${day}/`);
       await new Promise(resolve => setTimeout(resolve, 500));
       setNotes(response.data);
     } catch (error) {

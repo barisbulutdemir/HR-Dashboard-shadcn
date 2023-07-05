@@ -1,4 +1,3 @@
-"use client"
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -20,9 +19,9 @@ export function AddNoteCalender() {
   const { register, handleSubmit, setValue } = useForm();
   const [categories, setCategories] = useState([]);
 
-  const onSubmit = (data) => {
+  const onSubmit = (data: any) => {
     axios
-      .post("http://127.0.0.1:8000/calendar/notes/", data)
+      .post("http://barisbdem.pythonanywhere.com/calendar/notes/", data)
       .then((response) => {
         console.log(response);
         window.location.href = "/"; // Sayfayı yeniden yönlendir
@@ -34,7 +33,7 @@ export function AddNoteCalender() {
 
   useEffect(() => {
     axios
-      .get("http://127.0.0.1:8000/calendar/categories/")
+      .get("http://barisbdem.pythonanywhere.com/calendar/categories/")
       .then((response) => {
         setCategories(response.data);
       })
@@ -47,7 +46,7 @@ export function AddNoteCalender() {
     register("category"); // category alanını kaydetmek için register işlemini yapın
   }, [register]);
 
-  const handleCategoryChange = (event) => {
+  const handleCategoryChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const selectedCategory = event.target.value;
     setValue("category", selectedCategory);
   };
@@ -73,10 +72,10 @@ export function AddNoteCalender() {
                 defaultValue=""
                 onChange={handleCategoryChange}
               >
-                {categories.map((category, index) => (
+                {categories.map((category: any, index: number) => (
                   <div className="flex items-center space-x-2" key={index}>
                     <RadioGroupItem
-                      value={category.id} // Category ID'sini value olarak kullan
+                      value={category.id}
                       id={`category-${index}`}
                     />
                     <Label htmlFor={`category-${index}`}>

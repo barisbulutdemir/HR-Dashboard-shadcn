@@ -12,6 +12,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <head />
         <body>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          
         <div className='flex w-[100%] overflow-y-hidden	'>
         {/* sayfayi 3 e boluyoruz */}
         <div className='w-[13%]'><LeftMenu /> </div>
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div  className=' h-0.5  bg-green-500 w-full'/>
           <div>
             {children}
+            
           </div>
           </div>
        

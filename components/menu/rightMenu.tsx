@@ -5,6 +5,10 @@ import { Calendar } from '../ui/calendar';
 import { Label } from "../ui/label";
 import { Card } from "../ui/card";
 import axios from 'axios'; 
+import { HiOutlinePlus } from "react-icons/hi";
+import { Button } from "../ui/button";
+import { AddNoteCalender } from "./CalenderITems/addNotes";
+import { ScrollArea } from "../ui/scroll-area";
 
 export default function RightMenu() {
   const [date, setDate] = React.useState<Date | undefined>(new Date())
@@ -12,19 +16,19 @@ export default function RightMenu() {
   const [loading, setLoading] = React.useState(false); // Yeni state
 
   const fetchNotes = async (year: number, month: number, day: number) => {
-    
-    setLoading(true); // Veri yüklenmeye başladığında 'loading' durumunu 'true' olarak ayarla
+    setLoading(true);
     try {
-      setNotes([]); // Notları temizle
-      const response = await axios.get(`http://127.0.0.1:8000/notes/date/${year}/${month}/${day}/`);
+      setNotes([]);
+      const response = await axios.get(`http://127.0.0.1:8000/calendar/notes/getNotesByDate/${year}/${month}/${day}/`);
       await new Promise(resolve => setTimeout(resolve, 500));
       setNotes(response.data);
     } catch (error) {
       console.error(error);
     } finally {
-      setLoading(false); // Veri yükleme işlemi bittiğinde 'loading' durumunu 'false' olarak ayarla
+      setLoading(false);
     }
   }
+  
 
   React.useEffect(() => {
     if (date) {
@@ -46,10 +50,15 @@ export default function RightMenu() {
       />
       </div>
       <Card className="mt-4 p-3 h-[270px]">
-          <div className="py-4 flex justify-center">
+        <div className="flex justify-end h-6">
+          <AddNoteCalender />
+        </div>
+          <div className=" flex justify-center">
              <Label className=" opacity-30 text-md">Daily Things</Label>
           </div>
+          <ScrollArea className="h-[200px]">
           <div className="grid space-y-3">
+          
             {loading ? (
               <Label>Loading...</Label> // Yükleniyor durumunu göster
             ) : (
@@ -59,7 +68,10 @@ export default function RightMenu() {
                 
               ))
             )}
+           
+            
           </div>
+          </ScrollArea>
       </Card>
     </>
   )

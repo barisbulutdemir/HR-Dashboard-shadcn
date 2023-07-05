@@ -14,7 +14,7 @@ export default function Employee() {
   async function fetchPersons() {
     try {
       // İstek yapılıyor ve dönen değer response'a atanıyor
-      const response = await axios.get('http://127.0.0.1:8000/persons/');
+      const response = await axios.get('https://barisbdem.pythonanywhere.com/persons/');
       // JSON verisini döndür
       return response.data;
     } catch (err) {
